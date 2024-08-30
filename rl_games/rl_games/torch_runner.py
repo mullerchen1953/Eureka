@@ -50,6 +50,7 @@ class Runner:
         ### it didnot help for lots for openai gym envs anyway :(
         #torch.backends.cudnn.deterministic = True
         #torch.use_deterministic_algorithms(True)
+        self.player = None
 
     def reset(self):
         pass
@@ -105,7 +106,8 @@ class Runner:
         player = self.create_player()
         _restore(player, args)
         _override_sigma(player, args)
-        player.run()
+        self.player = player
+        # player.run()
 
     def create_player(self):
         return self.player_factory.create(self.algo_name, params=self.params)
